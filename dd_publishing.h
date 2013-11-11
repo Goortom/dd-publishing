@@ -6,6 +6,10 @@
 #include <stdbool.h>
 #include "dd_publishing_config.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+	
 // ------------------------------------------------------------------------------------------- iOS
 
 // -------------------------------------- In-App Purchse
@@ -112,4 +116,8 @@ void dd_pbl_ios_adx_track_event(const char * name, const char * data, const char
 void dd_pbl_ios_adx_handle_url(void * url); // actually its NSURL*, use it in handleOpenURL and openURL
 
 // ------------------------------------------------------------------------------------------- Android
+
+#ifdef __cplusplus
+}
+#endif
 
