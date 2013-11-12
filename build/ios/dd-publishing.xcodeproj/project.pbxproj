@@ -417,6 +417,11 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "dd-publishing/dd-publishing-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DD_PBL_IOS,
+					"DEBUG=1",
+					"$(inherited)",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/jimon/Documents/dd-publishing/lib/ios",
@@ -439,6 +444,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "dd-publishing/dd-publishing-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = DD_PBL_IOS;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/jimon/Documents/dd-publishing/lib/ios",

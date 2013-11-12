@@ -27,7 +27,7 @@ void dd_pbl_ios_localytics_session_resume()
 	[[LocalyticsSession shared] upload];
 }
 
-void dd_pbl_ios_localytics_track_event(const char * name, size_t attributes_count, const char ** parameters, const char ** values, uint32_t customer_value_increase)
+void dd_pbl_ios_localytics_track_event(const char * name, uint16_t attributes_count, const char ** parameters, const char ** values, uint32_t customer_value_increase)
 {
 	NSMutableDictionary * dict = nil;
 	

@@ -26,11 +26,11 @@ void dd_pbl_ios_gc_set_preset_viewcontroller(dd_pbl_ios_gc_present_viewcontrolle
 int8_t dd_pbl_ios_gc_is_aviable() {return -2;} // > 0 then ok, if == 0 then not auth, if == -1 then waiting for result, if == -2 then not aviable
 void dd_pbl_ios_gc_auth() {}
 
-uint64_t dd_pbl_ios_gc_user_id() {return 0;}
+const char * dd_pbl_ios_gc_user_id() {return 0;}
 const char * dd_pbl_ios_gc_user_name() {return "";}
 
 uint32_t dd_pbl_ios_gc_friends_count() {return 0;}
-uint64_t dd_pbl_ios_gc_friend_id(uint32_t index) {return 0;}
+const char * dd_pbl_ios_gc_friend_id(uint32_t index) {return 0;}
 const char * dd_pbl_ios_gc_friend_user_name(uint32_t index) {return "";}
 
 uint64_t dd_pbl_ios_gc_unsafe_id_to_uint64_t(const char * user_id) {return 0;} // unsafe method to convert string id to uint64_t, no guarantee
@@ -95,7 +95,7 @@ bool dd_pbl_ios_reachability_is_wan_aviable() {return true;}
 void dd_pbl_ios_localytics_session_start(const char * key) {}
 void dd_pbl_ios_localytics_session_end() {}
 void dd_pbl_ios_localytics_session_resume() {}
-void dd_pbl_ios_localytics_track_event(const char * name, size_t attributes_count, const char ** parameters, const char ** values, uint32_t customer_value_increase) {}
+void dd_pbl_ios_localytics_track_event(const char * name, uint16_t attributes_count, const char ** parameters, const char ** values, uint32_t customer_value_increase) {}
 void dd_pbl_ios_localytics_track_screen(const char * name) {}
 
 #endif

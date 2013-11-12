@@ -96,10 +96,10 @@ void dd_pbl_ios_gc_set_preset_viewcontroller(dd_pbl_ios_gc_present_viewcontrolle
 						{
 							gc_friends_count = 0;
 							
-							for(GKPlayer * player in friends)
+							for(GKPlayer * player in players)
 							{
 								dd_pbl_ios_gc_save_strcpy(gc_friends[gc_friends_count].uid, sizeof(gc_me.uid), [[player playerID] UTF8String]);
-								dd_pbl_ios_gc_save_strcpy(gc_friends[gc_friends_count].uid, sizeof(gc_me.name), [[player displayName] UTF8String]);
+								dd_pbl_ios_gc_save_strcpy(gc_friends[gc_friends_count].name, sizeof(gc_me.name), [[player displayName] UTF8String]);
 								
 								++gc_friends_count;
 								
