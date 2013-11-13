@@ -188,11 +188,13 @@ uint64_t dd_pbl_ios_gc_unsafe_id_to_uint64_t(const char * user_id) // unsafe met
 	return temp;
 }
 
+#ifdef __IPHONE_7_0
+
 void dd_pbl_ios_gc_leaderboard_show(const char * name)
 {
-	GKLeaderboardViewController * leaderboard = [[[GKLeaderboardViewController alloc] init] autorelease]; // TODO support IOS >=7
-	[leaderboard setCategory:[NSString stringWithUTF8String:name]];
-	
+	GKGameCenterViewController * leaderboard = [[[GKGameCenterViewController alloc] init] autorelease];
+	leaderboard.viewState = GKGameCenterViewControllerStateLeaderboards;
+
 	if(gc_callback)
 	{
 		(*gc_callback)(leaderboard);
@@ -205,27 +207,28 @@ void dd_pbl_ios_gc_leaderboard_show(const char * name)
 
 void dd_pbl_ios_gc_leaderboard_report(const char * name, uint32_t value)
 {
-	GKScore * scoreReporter = [[[GKScore alloc] initWithLeaderboardIdentifier:[NSString stringWithUTF8String:name]] autorelease]; // TODO support for IOS <7
-    scoreReporter.value = value;
-    scoreReporter.context = 0;
-	
-    [GKScore reportScores:@[scoreReporter] withCompletionHandler:^
-		(NSError * error)
-	{
-		if(error != nil)
-		{
-			NSLog(@"gc report score failed with error %@", [error localizedDescription]);
-		}
-    }];
+	GKScore * score = [[[GKScore alloc] initWithLeaderboardIdentifier:[NSString stringWithUTF8String:name]] autorelease];
+    score.value = value;
+    score.context = 0;
+
+	[GKScore reportScores:@[score] withCompletionHandler:^
+	 (NSError *error)
+	 {
+		 if(error != nil)
+		 {
+			 NSLog(@"gc report score failed with error %@", [error localizedDescription]);
+		 }
+	 }];
 }
 
 void dd_pbl_ios_gc_achievements_show()
 {
-	GKAchievementViewController * leaderboard = [[[GKAchievementViewController alloc] init] autorelease]; // TODO support IOS >=7
-	
+	GKGameCenterViewController * achievements = [[[GKGameCenterViewController alloc] init] autorelease];
+    achievements.viewState = GKGameCenterViewControllerStateAchievements;
+
 	if(gc_callback)
 	{
-		(*gc_callback)(leaderboard);
+		(*gc_callback)(achievements);
 	}
 	else
 	{
@@ -239,25 +242,101 @@ void dd_pbl_ios_gc_achievements_report(const char * name, float value) // value 
 	achv.percentComplete = value * 100.0f;
 	
 	[GKAchievement reportAchievements:@[achv] withCompletionHandler:^
-		(NSError *error)
-	{
-		if(error != nil)
-		{
-			NSLog(@"gc report achievements failed with error %@", [error localizedDescription]);
-		}
-	}];
+	 (NSError *error)
+	 {
+		 if(error != nil)
+		 {
+			 NSLog(@"gc report achievements failed with error %@", [error localizedDescription]);
+		 }
+	 }];
 }
 
 void dd_pbl_ios_gc_achievements_reset()
 {
 	[GKAchievement resetAchievementsWithCompletionHandler:^
-		(NSError *error)
-	{
-		if(error != nil)
-		{
-			NSLog(@"gc achievements reset failed with error %@", [error localizedDescription]);
-		}
-	}];
+	 (NSError *error)
+	 {
+		 if(error != nil)
+		 {
+			 NSLog(@"gc achievements reset failed with error %@", [error localizedDescription]);
+		 }
+	 }];
 }
+
+#elif __IPHONE_6_0
+
+void dd_pbl_ios_gc_leaderboard_show(const char * name)
+{
+	GKLeaderboardViewController * leaderboard = [[[GKLeaderboardViewController alloc] init] autorelease];
+	[leaderboard setCategory:[NSString stringWithUTF8String:name]];
+
+	if(gc_callback)
+	{
+		(*gc_callback)(leaderboard);
+	}
+	else
+	{
+		NSLog(@"gc show leaderboard - no gc auth callback set");
+	}
+}
+
+void dd_pbl_ios_gc_leaderboard_report(const char * name, uint32_t value)
+{
+	GKScore * score = [[[GKScore alloc] initWithLeaderboardIdentifier:[NSString stringWithUTF8String:name]] autorelease];
+    score.value = value;
+    score.context = 0;
+	
+	[GKScore reportScores:@[score] withCompletionHandler:^
+	 (NSError *error)
+	 {
+		 if(error != nil)
+		 {
+			 NSLog(@"gc report score failed with error %@", [error localizedDescription]);
+		 }
+	 }];
+}
+
+void dd_pbl_ios_gc_achievements_show()
+{
+	GKAchievementViewController * achievements = [[[GKAchievementViewController alloc] init] autorelease];
+
+	if(gc_callback)
+	{
+		(*gc_callback)(achievements);
+	}
+	else
+	{
+		NSLog(@"gc show achievements - no gc auth callback set");
+	}
+}
+
+void dd_pbl_ios_gc_achievements_report(const char * name, float value) // value from 0 to 1
+{
+	GKAchievement * achv = [[[GKAchievement alloc] initWithIdentifier:[NSString stringWithUTF8String:name]] autorelease];
+	achv.percentComplete = value * 100.0f;
+
+	[GKAchievement reportAchievements:@[achv] withCompletionHandler:
+	 ^(NSError *error)
+	 {
+		 if(error != nil)
+		 {
+			 NSLog(@"gc report achievements failed with error %@", [error localizedDescription]);
+		 }
+	 }];
+}
+
+void dd_pbl_ios_gc_achievements_reset()
+{
+	[GKAchievement resetAchievementsWithCompletionHandler:^
+	 (NSError *error)
+	 {
+		 if(error != nil)
+		 {
+			 NSLog(@"gc achievements reset failed with error %@", [error localizedDescription]);
+		 }
+	 }];
+}
+
+#endif
 
 #endif
