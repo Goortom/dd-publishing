@@ -69,7 +69,7 @@ void dd_pbl_ios_fb_publish_feed(const char * name, const char * caption, const c
 void dd_pbl_ios_fb_invite_friends(const char * message) {}
 
 int8_t dd_pbl_ios_fb_avatars_is_aviable() {return -1;}
-uint8_t * dd_pbl_ios_fb_avatars_bitmap() {return NULL;}
+uint8_t * dd_pbl_ios_fb_avatars_bitmap() {return 0;}
 uint16_t dd_pbl_ios_fb_avatars_bitmap_width() {return 256;}
 uint16_t dd_pbl_ios_fb_avatars_bitmap_height() {return 256;}
 uint16_t dd_pbl_ios_fb_avatars_width() {return 32;}
