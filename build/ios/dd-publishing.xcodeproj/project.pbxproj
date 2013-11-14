@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF69FF7A18350AED0005B0CC /* dd_publishing.c in Sources */ = {isa = PBXBuildFile; fileRef = EF69FF7918350AED0005B0CC /* dd_publishing.c */; };
 		EF76377318311B92007513C9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF76377218311B92007513C9 /* Foundation.framework */; };
 		EF7637C318311C4C007513C9 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF76379D18311C4C007513C9 /* FacebookSDK.framework */; };
 		EF7637C418311C4C007513C9 /* libLocalyticsAMP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF76379E18311C4C007513C9 /* libLocalyticsAMP.a */; };
 		EF7637C518311C4C007513C9 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF76379F18311C4C007513C9 /* libTestFlight.a */; };
-		EF7637C618311C4C007513C9 /* dd_publishing.c in Sources */ = {isa = PBXBuildFile; fileRef = EF7637A218311C4C007513C9 /* dd_publishing.c */; };
 		EF7637C718311C4C007513C9 /* dd_publishing_ios_adx.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7637A418311C4C007513C9 /* dd_publishing_ios_adx.m */; };
 		EF7637C818311C4C007513C9 /* dd_publishing_ios_fb.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7637A518311C4C007513C9 /* dd_publishing_ios_fb.m */; };
 		EF7637C918311C4C007513C9 /* dd_publishing_ios_gc.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7637A618311C4C007513C9 /* dd_publishing_ios_gc.m */; };
@@ -28,11 +28,8 @@
 		EF7637D618311CD3007513C9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF7637D518311CD3007513C9 /* UIKit.framework */; };
 		EF7637D918311F5F007513C9 /* AdXTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7637D818311F5F007513C9 /* AdXTracking.m */; };
 		EF7637DA18312C79007513C9 /* libdd-publishing.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = EF76376F18311B92007513C9 /* libdd-publishing.a */; };
-		EF7637DB18312C7D007513C9 /* dd_publishing_config.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = EF76379818311C4C007513C9 /* dd_publishing_config.h */; };
 		EF7637DC18312C7D007513C9 /* dd_publishing.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = EF76379918311C4C007513C9 /* dd_publishing.h */; };
 		EF7637DD18312C83007513C9 /* FacebookSDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = EF76379D18311C4C007513C9 /* FacebookSDK.framework */; };
-		EF7637DE18312C83007513C9 /* libLocalyticsAMP.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = EF76379E18311C4C007513C9 /* libLocalyticsAMP.a */; };
-		EF7637DF18312C83007513C9 /* libTestFlight.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = EF76379F18311C4C007513C9 /* libTestFlight.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,9 +40,6 @@
 			dstSubfolderSpec = 16;
 			files = (
 				EF7637DD18312C83007513C9 /* FacebookSDK.framework in CopyFiles */,
-				EF7637DE18312C83007513C9 /* libLocalyticsAMP.a in CopyFiles */,
-				EF7637DF18312C83007513C9 /* libTestFlight.a in CopyFiles */,
-				EF7637DB18312C7D007513C9 /* dd_publishing_config.h in CopyFiles */,
 				EF7637DC18312C7D007513C9 /* dd_publishing.h in CopyFiles */,
 				EF7637DA18312C79007513C9 /* libdd-publishing.a in CopyFiles */,
 			);
@@ -54,19 +48,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		EF69FF7918350AED0005B0CC /* dd_publishing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = dd_publishing.c; path = ../../../dd_publishing.c; sourceTree = "<group>"; };
 		EF76376F18311B92007513C9 /* libdd-publishing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libdd-publishing.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF76377218311B92007513C9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EF76377618311B92007513C9 /* dd-publishing-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "dd-publishing-Prefix.pch"; sourceTree = "<group>"; };
 		EF76378018311B92007513C9 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		EF76378318311B92007513C9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		EF76379818311C4C007513C9 /* dd_publishing_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dd_publishing_config.h; path = ../../../dd_publishing_config.h; sourceTree = "<group>"; };
 		EF76379918311C4C007513C9 /* dd_publishing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dd_publishing.h; path = ../../../dd_publishing.h; sourceTree = "<group>"; };
 		EF76379B18311C4C007513C9 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		EF76379D18311C4C007513C9 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		EF76379E18311C4C007513C9 /* libLocalyticsAMP.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLocalyticsAMP.a; sourceTree = "<group>"; };
 		EF76379F18311C4C007513C9 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		EF7637A118311C4C007513C9 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		EF7637A218311C4C007513C9 /* dd_publishing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dd_publishing.c; sourceTree = "<group>"; };
 		EF7637A418311C4C007513C9 /* dd_publishing_ios_adx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dd_publishing_ios_adx.m; sourceTree = "<group>"; };
 		EF7637A518311C4C007513C9 /* dd_publishing_ios_fb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dd_publishing_ios_fb.m; sourceTree = "<group>"; };
 		EF7637A618311C4C007513C9 /* dd_publishing_ios_gc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dd_publishing_ios_gc.m; sourceTree = "<group>"; };
@@ -143,7 +136,7 @@
 		EF76377418311B92007513C9 /* dd-publishing */ = {
 			isa = PBXGroup;
 			children = (
-				EF76379818311C4C007513C9 /* dd_publishing_config.h */,
+				EF69FF7918350AED0005B0CC /* dd_publishing.c */,
 				EF76379918311C4C007513C9 /* dd_publishing.h */,
 				EF76379A18311C4C007513C9 /* lib */,
 				EF7637A018311C4C007513C9 /* src */,
@@ -184,7 +177,6 @@
 			isa = PBXGroup;
 			children = (
 				EF7637A118311C4C007513C9 /* .gitignore */,
-				EF7637A218311C4C007513C9 /* dd_publishing.c */,
 				EF7637A318311C4C007513C9 /* ios */,
 			);
 			name = src;
@@ -322,9 +314,9 @@
 				EF7637CD18311C4C007513C9 /* dd_publishing_ios_reachability.m in Sources */,
 				EF7637C718311C4C007513C9 /* dd_publishing_ios_adx.m in Sources */,
 				EF7637C818311C4C007513C9 /* dd_publishing_ios_fb.m in Sources */,
-				EF7637C618311C4C007513C9 /* dd_publishing.c in Sources */,
 				EF7637D218311C4C007513C9 /* MKSKSubscriptionProduct.m in Sources */,
 				EF7637D018311C4C007513C9 /* SFHFKeychainUtils.m in Sources */,
+				EF69FF7A18350AED0005B0CC /* dd_publishing.c in Sources */,
 				EF7637D118311C4C007513C9 /* MKSKProduct.m in Sources */,
 				EF7637CF18311C4C007513C9 /* NSData+MKBase64.m in Sources */,
 				EF7637D318311C4C007513C9 /* MKStoreManager.m in Sources */,

@@ -28,6 +28,50 @@ const uint32_t fb_friends_count_max = 64;
 uint32_t fb_friends_count = 0;
 fb_user fb_friends[fb_friends_count_max];
 
+const uint16_t fb_avatars_w_count = 8;
+const uint16_t fb_avatars_h_count = 8;
+const uint16_t fb_avatars_w_one = 32;
+const uint16_t fb_avatars_h_one = 32;
+const uint16_t fb_avatars_w = fb_avatars_w_count * fb_avatars_w_one;
+const uint16_t fb_avatars_h = fb_avatars_h_count * fb_avatars_h_one;
+
+int8_t fb_avatars_state = -1;
+uint8_t fb_avatars_bitmap[fb_avatars_w * fb_avatars_h * 4];
+
+void dd_pbl_ios_fb_grab_avatar(CGContextRef context, uint64_t uid, uint16_t x, uint16_t y)
+{
+	char url[512];
+	
+	sprintf(url, "https://graph.facebook.com/%llu/picture?type=square", uid);
+	
+	UIImage * img = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithUTF8String:url]]]];
+	
+	if(!img)
+		return;
+	
+	CGContextDrawImage(context, CGRectMake(x, fb_avatars_h - fb_avatars_h_one - y, fb_avatars_w_one, fb_avatars_h_one), [img CGImage]);
+	
+	[img release];
+}
+
+void dd_pbl_ios_fb_grab_avatars()
+{
+	fb_avatars_state = -1;
+	
+	CGColorSpaceRef color = CGColorSpaceCreateDeviceRGB();
+	CGContextRef context = CGBitmapContextCreate(fb_avatars_bitmap, fb_avatars_w, fb_avatars_h, 8, fb_avatars_w * 4, color, kCGImageAlphaNoneSkipLast | kCGBitmapByteOrder32Big);
+	CGColorSpaceRelease(color);
+	
+	dd_pbl_ios_fb_grab_avatar(context, fb_me.uid, 0, 0);
+	
+	for(uint32_t i = 0; i < fb_friends_count; ++i)
+		dd_pbl_ios_fb_grab_avatar(context, fb_friends[i].uid, ((i + 1) % fb_avatars_w_count) * fb_avatars_w_one, ((i + 1) / fb_avatars_h_count) * fb_avatars_h_one);
+	
+	CGContextRelease(context);
+	
+	fb_avatars_state = 1;
+}
+
 void dd_pbl_ios_fb_grab_data()
 {
 	if(fb_session_state != 1)
@@ -99,6 +143,9 @@ void dd_pbl_ios_fb_grab_data()
 					[form release];
 
 					fb_session_state = 1;
+					
+					dispatch_queue_t q = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+					dispatch_async(q, ^{dd_pbl_ios_fb_grab_avatars();});
 				}
 			}];
 		}
@@ -309,6 +356,36 @@ void dd_pbl_ios_fb_invite_friends(const char * message)
 			}
 		}
 	}];
+}
+
+int8_t dd_pbl_ios_fb_avatars_is_aviable()
+{
+	return fb_avatars_state;
+}
+
+uint8_t * dd_pbl_ios_fb_avatars_bitmap()
+{
+	return fb_avatars_bitmap;
+}
+
+uint16_t dd_pbl_ios_fb_avatars_bitmap_width()
+{
+	return fb_avatars_w;
+}
+
+uint16_t dd_pbl_ios_fb_avatars_bitmap_height()
+{
+	return fb_avatars_h;
+}
+
+uint16_t dd_pbl_ios_fb_avatars_width()
+{
+	return fb_avatars_w_one;
+}
+
+uint16_t dd_pbl_ios_fb_avatars_height()
+{
+	return fb_avatars_h_one;
 }
 
 #endif

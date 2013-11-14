@@ -12,6 +12,9 @@
 #import <GameKit/GameKit.h>
 #import <CommonCrypto/CommonDigest.h>
 
+// lets enable this when we drop iOS 6 support
+//#define DD_PBL_IOS_GC_IOS_7_ONLY
+
 dd_pbl_ios_gc_present_viewcontroller_callback gc_callback = NULL;
 int8_t gc_session_state = -2;
 
@@ -188,7 +191,7 @@ uint64_t dd_pbl_ios_gc_unsafe_id_to_uint64_t(const char * user_id) // unsafe met
 	return temp;
 }
 
-#ifdef __IPHONE_7_0
+#ifdef DD_PBL_IOS_GC_IOS_7_ONLY
 
 void dd_pbl_ios_gc_leaderboard_show(const char * name)
 {
@@ -263,7 +266,7 @@ void dd_pbl_ios_gc_achievements_reset()
 	 }];
 }
 
-#elif __IPHONE_6_0
+#else
 
 void dd_pbl_ios_gc_leaderboard_show(const char * name)
 {
@@ -282,7 +285,7 @@ void dd_pbl_ios_gc_leaderboard_show(const char * name)
 
 void dd_pbl_ios_gc_leaderboard_report(const char * name, uint32_t value)
 {
-	GKScore * score = [[[GKScore alloc] initWithLeaderboardIdentifier:[NSString stringWithUTF8String:name]] autorelease];
+	GKScore * score = [[[GKScore alloc] initWithCategory:[NSString stringWithUTF8String:name]] autorelease];
     score.value = value;
     score.context = 0;
 	

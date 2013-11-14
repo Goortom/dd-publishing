@@ -2,12 +2,31 @@
 
 #pragma once
 
+// ------------------------------------------------------------------------------------------- Config
+
+// please add DD_PBL_IOS to your iOS project
+
+#ifdef DD_PBL_IOS
+
+#define DD_PBL_IOS_IAP
+#define DD_PBL_IOS_GC
+#define DD_PBL_IOS_FB
+#define DD_PBL_IOS_PUSH_NOTIF
+#define DD_PBL_IOS_REACHABILITY
+#define DD_PBL_IOS_LOCALYTICS
+#define DD_PBL_IOS_TESTFLIGHT
+#define DD_PBL_IOS_ADX
+
+#endif
+
+// -------------------------------------------------------------------------------------------
+
 #include <stdint.h>
 #include <stdbool.h>
-#include "dd_publishing_config.h"
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 	
 // ------------------------------------------------------------------------------------------- iOS
@@ -22,6 +41,15 @@ bool dd_pbl_ios_iap_can_consume(const char * name);
 bool dd_pbl_ios_iap_consume(const char * name, uint32_t count);
 
 // -------------------------------------- Game Center
+	
+/*
+integration notes
+	 
+1) set callback function to dd_pbl_ios_gc_set_preset_viewcontroller in app delegate
+2) when callback function was called, present viewcontroller as modal view controller
+3) if dd_pbl_ios_gc_is_aviable == 0 call dd_pbl_ios_fb_auth
+4) do anything only after dd_pbl_ios_fb_is_aviable > 0
+*/
 
 typedef void (*dd_pbl_ios_gc_present_viewcontroller_callback)(void * viewcontroller); // UIViewController type
 
@@ -78,6 +106,13 @@ void dd_pbl_ios_fb_publish_feed(const char * name, const char * caption, const c
 
 void dd_pbl_ios_fb_invite_friends(const char * message);
 
+int8_t dd_pbl_ios_fb_avatars_is_aviable(); // return > 0 when avaters bitmap aviable
+uint8_t * dd_pbl_ios_fb_avatars_bitmap(); // RGBA8 bitmap
+uint16_t dd_pbl_ios_fb_avatars_bitmap_width(); // total width of bitmap, no more than 256
+uint16_t dd_pbl_ios_fb_avatars_bitmap_height(); // total height of bitmap, no more than 256
+uint16_t dd_pbl_ios_fb_avatars_width(); // width of one avatar, no more than bitmap width
+uint16_t dd_pbl_ios_fb_avatars_height(); // height of one avatar, no more than bitmap height
+
 // -------------------------------------- Push Notifications
 
 /*
@@ -116,6 +151,8 @@ void dd_pbl_ios_adx_track_event(const char * name, const char * data, const char
 void dd_pbl_ios_adx_handle_url(void * url); // actually its NSURL*, use it in handleOpenURL and openURL
 
 // ------------------------------------------------------------------------------------------- Android
+
+// -------------------------------------------------------------------------------------------
 
 #ifdef __cplusplus
 }
