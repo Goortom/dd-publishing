@@ -30,8 +30,8 @@ fb_user fb_friends[fb_friends_count_max];
 
 const uint16_t fb_avatars_w_count = 8;
 const uint16_t fb_avatars_h_count = 8;
-const uint16_t fb_avatars_w_one = 32;
-const uint16_t fb_avatars_h_one = 32;
+const uint16_t fb_avatars_w_one = 50;
+const uint16_t fb_avatars_h_one = 50;
 const uint16_t fb_avatars_w = fb_avatars_w_count * fb_avatars_w_one;
 const uint16_t fb_avatars_h = fb_avatars_h_count * fb_avatars_h_one;
 
