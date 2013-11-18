@@ -75,7 +75,9 @@ void dd_pbl_ios_gc_set_preset_viewcontroller(dd_pbl_ios_gc_present_viewcontrolle
 			gc_session_state = -1;
 
 			dd_pbl_ios_gc_save_strcpy(gc_me.uid, sizeof(gc_me.uid), [[[GKLocalPlayer localPlayer] playerID] UTF8String]);
-			dd_pbl_ios_gc_save_strcpy(gc_me.uid, sizeof(gc_me.name), [[[GKLocalPlayer localPlayer] displayName] UTF8String]);
+			
+			// TODO, GC ask us to use displayName instead of alias
+			dd_pbl_ios_gc_save_strcpy(gc_me.name, sizeof(gc_me.name), [[[GKLocalPlayer localPlayer] alias] UTF8String]);
 			
 			[[GKLocalPlayer localPlayer] loadFriendsWithCompletionHandler:^
 				(NSArray * friends, NSError * error)
@@ -102,7 +104,9 @@ void dd_pbl_ios_gc_set_preset_viewcontroller(dd_pbl_ios_gc_present_viewcontrolle
 							for(GKPlayer * player in players)
 							{
 								dd_pbl_ios_gc_save_strcpy(gc_friends[gc_friends_count].uid, sizeof(gc_me.uid), [[player playerID] UTF8String]);
-								dd_pbl_ios_gc_save_strcpy(gc_friends[gc_friends_count].name, sizeof(gc_me.name), [[player displayName] UTF8String]);
+
+								// TODO, GC ask us to use displayName instead of alias
+								dd_pbl_ios_gc_save_strcpy(gc_friends[gc_friends_count].name, sizeof(gc_me.name), [[player alias] UTF8String]);
 								
 								++gc_friends_count;
 								
