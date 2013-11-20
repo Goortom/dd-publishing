@@ -197,6 +197,7 @@ uint64_t dd_pbl_ios_gc_unsafe_id_to_uint64_t(const char * user_id) // unsafe met
 
 #ifdef DD_PBL_IOS_GC_IOS_7_ONLY
 
+/*
 void dd_pbl_ios_gc_leaderboard_show(const char * name)
 {
 	GKGameCenterViewController * leaderboard = [[[GKGameCenterViewController alloc] init] autorelease];
@@ -269,13 +270,32 @@ void dd_pbl_ios_gc_achievements_reset()
 		 }
 	 }];
 }
+*/
 
 #else
+
+@interface dd_pbl_ios_gc_nav_proxy : NSObject <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate>
+@end
+
+@implementation dd_pbl_ios_gc_nav_proxy
+
+-(void)achievementViewControllerDidFinish:(GKAchievementViewController*)viewController
+{
+	(*gc_callback)(NULL);
+}
+
+-(void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController*)viewController
+{
+	(*gc_callback)(NULL);
+}
+
+@end
 
 void dd_pbl_ios_gc_leaderboard_show(const char * name)
 {
 	GKLeaderboardViewController * leaderboard = [[[GKLeaderboardViewController alloc] init] autorelease];
 	[leaderboard setCategory:[NSString stringWithUTF8String:name]];
+	[leaderboard setLeaderboardDelegate:[[dd_pbl_ios_gc_nav_proxy alloc] init]];
 
 	if(gc_callback)
 	{
@@ -306,6 +326,7 @@ void dd_pbl_ios_gc_leaderboard_report(const char * name, uint32_t value)
 void dd_pbl_ios_gc_achievements_show()
 {
 	GKAchievementViewController * achievements = [[[GKAchievementViewController alloc] init] autorelease];
+	[achievements setAchievementDelegate:[[dd_pbl_ios_gc_nav_proxy alloc] init]];
 
 	if(gc_callback)
 	{

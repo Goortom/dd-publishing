@@ -46,7 +46,7 @@ bool dd_pbl_ios_iap_consume(const char * name, uint32_t count);
 integration notes
 	 
 1) set callback function to dd_pbl_ios_gc_set_preset_viewcontroller in app delegate
-2) when callback function was called, present viewcontroller as modal view controller
+2) when callback function was called, present viewcontroller as modal view controller, or dismiss it when got null
 3) if dd_pbl_ios_gc_is_aviable == 0 call dd_pbl_ios_fb_auth
 4) do anything only after dd_pbl_ios_fb_is_aviable > 0
 */
