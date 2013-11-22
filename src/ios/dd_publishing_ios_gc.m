@@ -208,7 +208,7 @@ uint64_t dd_pbl_ios_gc_unsafe_id_to_uint64_t(const char * user_id) // unsafe met
 
 #ifdef DD_PBL_IOS_GC_IOS_7_ONLY
 /*
-void dd_pbl_ios_gc_scores_retrieve(const char * name)
+void dd_pbl_ios_gc_scores_retrieve(const char * leaderboardName)
 {
 	gc_scores_retrieve_status = 0;
 	gc_scores_count = 0;
@@ -216,7 +216,7 @@ void dd_pbl_ios_gc_scores_retrieve(const char * name)
 	GKLeaderboard * leaderboard = [[[GKLeaderboard alloc] init] autorelease];
 	leaderboard.playerScope = GKLeaderboardPlayerScopeGlobal;
 	leaderboard.timeScope = GKLeaderboardTimeScopeAllTime;
-	leaderboard.identifier = [NSString stringWithUTF8String:name];
+	leaderboard.identifier = [NSString stringWithUTF8String:leaderboardName];
 	leaderboard.range = NSMakeRange(1, gc_scores_count_max);
 	[leaderboard loadScoresWithCompletionHandler:
 	 ^(NSArray * scores, NSError * error)
@@ -246,11 +246,17 @@ void dd_pbl_ios_gc_scores_retrieve(const char * name)
 			  {
 				  if(!error && players)
 				  {
-					  for(size_t i = 0; i < gc_scores_count; ++i)
+					  for(size_t i = 0; i < [players count]; ++i)
 					  {
 						  GKPlayer * player = [players objectAtIndex:i];
 						  
-						  dd_pbl_ios_gc_save_strcpy(gc_scores[gc_scores_count].user.name, sizeof(gc_scores[gc_scores_count].user.name), [[player alias] UTF8String]);
+						  for(size_t j = 0; j < gc_scores_count; ++j)
+						  {
+							  if(!strcmp(gc_scores[j].user.uid, [[player playerID] UTF8String]))
+							  {
+								  dd_pbl_ios_gc_save_strcpy(gc_scores[j].user.name, sizeof(gc_scores[j].user.name), [[player alias] UTF8String]);
+							  }
+						  }
 					  }
 				  }
 				  else
@@ -274,6 +280,11 @@ void dd_pbl_ios_gc_scores_retrieve(const char * name)
 int8_t dd_pbl_ios_gc_scores_retrieve_status()
 {
 	return gc_scores_retrieve_status;
+}
+
+uint32_t dd_pbl_ios_gc_scores_count()
+{
+	return gc_scores_count;
 }
 
 int64_t dd_pbl_ios_gc_score(uint32_t index)
@@ -393,72 +404,83 @@ void dd_pbl_ios_gc_achievements_reset()
 
 @end
 
-void dd_pbl_ios_gc_scores_retrieve(const char * name)
+void dd_pbl_ios_gc_scores_retrieve(const char * leaderboardName)
 {
 	gc_scores_retrieve_status = 0;
 	gc_scores_count = 0;
-
+	
 	GKLeaderboard * leaderboard = [[[GKLeaderboard alloc] init] autorelease];
 	leaderboard.playerScope = GKLeaderboardPlayerScopeGlobal;
 	leaderboard.timeScope = GKLeaderboardTimeScopeAllTime;
-	leaderboard.category = [NSString stringWithUTF8String:name];
+	leaderboard.category = [NSString stringWithUTF8String:leaderboardName];
 	leaderboard.range = NSMakeRange(1, gc_scores_count_max);
 	[leaderboard loadScoresWithCompletionHandler:
-		^(NSArray * scores, NSError * error)
-	{
-		if(!error && scores)
-		{
-			NSMutableArray * identifiers = [[NSMutableArray alloc] init];
-
-			for(GKScore * score in scores)
-			{
-				NSLog(@"score retrieved: %lld", score.value);
-
-				gc_scores[gc_scores_count].score = score.value;
-
-				dd_pbl_ios_gc_save_strcpy(gc_scores[gc_scores_count].user.uid, sizeof(gc_scores[gc_scores_count].user.uid), [[score playerID] UTF8String]);
-
-				[identifiers addObject:score.playerID];
-
-				gc_scores_count++;
-
-				if(gc_scores_count >= gc_scores_count_max)
-					break;
-			}
-
-			[GKPlayer loadPlayersForIdentifiers:identifiers withCompletionHandler:
-				^(NSArray *players, NSError *error)
-			{
-				if(!error && players)
-				{
-					for(size_t i = 0; i < gc_scores_count; ++i)
-					{
-						GKPlayer * player = [players objectAtIndex:i];
-
-						dd_pbl_ios_gc_save_strcpy(gc_scores[gc_scores_count].user.name, sizeof(gc_scores[gc_scores_count].user.name), [[player alias] UTF8String]);
-					}
-				}
-				else
-				{
-					NSLog(@"gc scores - something wrong");
-				}
-			}];
-
-			[identifiers removeAllObjects];
-			[identifiers release];
-		}
-		else
-		{
-			NSLog(@"gc scores - something wrong");
-		}
-
-		gc_scores_retrieve_status = 1;
-	}];
+	 ^(NSArray * scores, NSError * error)
+	 {
+		 if(!error && scores)
+		 {
+			 NSMutableArray * identifiers = [[NSMutableArray alloc] init];
+			 
+			 for(GKScore * score in scores)
+			 {
+				 NSLog(@"score retrieved: %lld", score.value);
+				 
+				 gc_scores[gc_scores_count].score = score.value;
+				 
+				 dd_pbl_ios_gc_save_strcpy(gc_scores[gc_scores_count].user.uid, sizeof(gc_scores[gc_scores_count].user.uid), [[score playerID] UTF8String]);
+				 
+				 [identifiers addObject:score.playerID];
+				 
+				 gc_scores_count++;
+				 
+				 if(gc_scores_count >= gc_scores_count_max)
+					 break;
+			 }
+			 
+			 [GKPlayer loadPlayersForIdentifiers:identifiers withCompletionHandler:
+			  ^(NSArray *players, NSError *error)
+			  {
+				  if(!error && players)
+				  {
+					  for(size_t i = 0; i < [players count]; ++i)
+					  {
+						  GKPlayer * player = [players objectAtIndex:i];
+						  
+						  for(size_t j = 0; j < gc_scores_count; ++j)
+						  {
+							  if(!strcmp(gc_scores[j].user.uid, [[player playerID] UTF8String]))
+							  {
+								  dd_pbl_ios_gc_save_strcpy(gc_scores[j].user.name, sizeof(gc_scores[j].user.name), [[player alias] UTF8String]);
+							  }
+						  }
+					  }
+				  }
+				  else
+				  {
+					  NSLog(@"gc scores - something wrong");
+				  }
+			  }];
+			 
+			 [identifiers removeAllObjects];
+			 [identifiers release];
+		 }
+		 else
+		 {
+			 NSLog(@"gc scores - something wrong");
+		 }
+		 
+		 gc_scores_retrieve_status = 1;
+	 }];
 }
 
 int8_t dd_pbl_ios_gc_scores_retrieve_status()
 {
 	return gc_scores_retrieve_status;
+}
+
+uint32_t dd_pbl_ios_gc_scores_count()
+{
+	return gc_scores_count;
 }
 
 int64_t dd_pbl_ios_gc_score(uint32_t index)
