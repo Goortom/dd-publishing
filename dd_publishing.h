@@ -67,7 +67,7 @@ const char * dd_pbl_ios_gc_friend_user_name(uint32_t index);
 
 uint64_t dd_pbl_ios_gc_unsafe_id_to_uint64_t(const char * user_id); // unsafe method to convert string id to uint64_t, no guarantee
 
-void dd_pbl_ios_gc_scores_retrieve(const char * leaderboardName);
+void dd_pbl_ios_gc_scores_retrieve(const char * leaderboard_name);
 int8_t dd_pbl_ios_gc_scores_retrieve_status();
 uint32_t dd_pbl_ios_gc_scores_count();
 int64_t dd_pbl_ios_gc_score(uint32_t index);

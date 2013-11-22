@@ -208,7 +208,7 @@ uint64_t dd_pbl_ios_gc_unsafe_id_to_uint64_t(const char * user_id) // unsafe met
 
 #ifdef DD_PBL_IOS_GC_IOS_7_ONLY
 /*
-void dd_pbl_ios_gc_scores_retrieve(const char * leaderboardName)
+void dd_pbl_ios_gc_scores_retrieve(const char * leaderboard_name)
 {
 	gc_scores_retrieve_status = 0;
 	gc_scores_count = 0;
@@ -216,7 +216,7 @@ void dd_pbl_ios_gc_scores_retrieve(const char * leaderboardName)
 	GKLeaderboard * leaderboard = [[[GKLeaderboard alloc] init] autorelease];
 	leaderboard.playerScope = GKLeaderboardPlayerScopeGlobal;
 	leaderboard.timeScope = GKLeaderboardTimeScopeAllTime;
-	leaderboard.identifier = [NSString stringWithUTF8String:leaderboardName];
+	leaderboard.identifier = [NSString stringWithUTF8String:leaderboard_name];
 	leaderboard.range = NSMakeRange(1, gc_scores_count_max);
 	[leaderboard loadScoresWithCompletionHandler:
 	 ^(NSArray * scores, NSError * error)
@@ -264,8 +264,7 @@ void dd_pbl_ios_gc_scores_retrieve(const char * leaderboardName)
 					  NSLog(@"gc scores - something wrong");
 				  }
 			  }];
-			 
-			 [identifiers removeAllObjects];
+
 			 [identifiers release];
 		 }
 		 else
@@ -404,7 +403,7 @@ void dd_pbl_ios_gc_achievements_reset()
 
 @end
 
-void dd_pbl_ios_gc_scores_retrieve(const char * leaderboardName)
+void dd_pbl_ios_gc_scores_retrieve(const char * leaderboard_name)
 {
 	gc_scores_retrieve_status = 0;
 	gc_scores_count = 0;
@@ -412,7 +411,7 @@ void dd_pbl_ios_gc_scores_retrieve(const char * leaderboardName)
 	GKLeaderboard * leaderboard = [[[GKLeaderboard alloc] init] autorelease];
 	leaderboard.playerScope = GKLeaderboardPlayerScopeGlobal;
 	leaderboard.timeScope = GKLeaderboardTimeScopeAllTime;
-	leaderboard.category = [NSString stringWithUTF8String:leaderboardName];
+	leaderboard.category = [NSString stringWithUTF8String:leaderboard_name];
 	leaderboard.range = NSMakeRange(1, gc_scores_count_max);
 	[leaderboard loadScoresWithCompletionHandler:
 	 ^(NSArray * scores, NSError * error)
@@ -460,8 +459,7 @@ void dd_pbl_ios_gc_scores_retrieve(const char * leaderboardName)
 					  NSLog(@"gc scores - something wrong");
 				  }
 			  }];
-			 
-			 [identifiers removeAllObjects];
+
 			 [identifiers release];
 		 }
 		 else
