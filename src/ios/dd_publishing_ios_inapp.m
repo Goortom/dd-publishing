@@ -12,7 +12,15 @@
 
 void dd_pbl_ios_iap_buy(const char * name)
 {
-	[[MKStoreManager sharedManager] buyFeature:[NSString stringWithUTF8String:name] onComplete:^(NSString * purchasedFeature, NSData * purchasedReceipt, NSArray * availableDownloads){} onCancelled:^{}];
+	[[MKStoreManager sharedManager] buyFeature:[NSString stringWithUTF8String:name] onComplete:^
+		(NSString * purchasedFeature, NSData * purchasedReceipt, NSArray * availableDownloads)
+	{
+		NSLog(@"dd-pbl-inapp - ok");
+	}
+		onCancelled:^
+	{
+		NSLog(@"dd-pbl-inapp - cancel");
+	}];
 }
 
 void dd_pbl_ios_iap_restore()

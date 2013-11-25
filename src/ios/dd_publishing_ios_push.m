@@ -8,6 +8,9 @@
 	#error This file cannot be compiled with ARC. Either turn off ARC for the project or use -fno-objc-arc flag
 #endif
 
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
 int32_t dd_pbl_ios_push_add(const char * text, uint32_t seconds)
 {
 	int32_t push_id = 0;
