@@ -33,7 +33,7 @@
 		EF9D209E184A0F6A0054F732 /* dd_publishing_ios_chartboost.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9D209C184A0F6A0054F732 /* dd_publishing_ios_chartboost.m */; };
 		EF9D209F184A0F6A0054F732 /* dd_publishing_ios_tapjoy.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9D209D184A0F6A0054F732 /* dd_publishing_ios_tapjoy.m */; };
 		EF9D20A8184A0F900054F732 /* libChartboost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9D20A7184A0F900054F732 /* libChartboost.a */; };
-		EF9D20AA184A35A60054F732 /* Tapjoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9D20A9184A35A60054F732 /* Tapjoy.framework */; };
+		EF9D20AF184A37D70054F732 /* Tapjoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9D20AE184A37D70054F732 /* Tapjoy.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -94,9 +94,9 @@
 		EF9D209C184A0F6A0054F732 /* dd_publishing_ios_chartboost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dd_publishing_ios_chartboost.m; sourceTree = "<group>"; };
 		EF9D209D184A0F6A0054F732 /* dd_publishing_ios_tapjoy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dd_publishing_ios_tapjoy.m; sourceTree = "<group>"; };
 		EF9D20A1184A0F730054F732 /* Chartboost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chartboost.h; sourceTree = "<group>"; };
-		EF9D20A4184A0F870054F732 /* TapjoyResources.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TapjoyResources.bundle; sourceTree = "<group>"; };
 		EF9D20A7184A0F900054F732 /* libChartboost.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libChartboost.a; sourceTree = "<group>"; };
-		EF9D20A9184A35A60054F732 /* Tapjoy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tapjoy.framework; path = ../Tapjoy.framework; sourceTree = "<group>"; };
+		EF9D20AD184A37D70054F732 /* TapjoyResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TapjoyResources.bundle; sourceTree = "<group>"; };
+		EF9D20AE184A37D70054F732 /* Tapjoy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Tapjoy.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +108,7 @@
 				EF7637C418311C4C007513C9 /* libLocalyticsAMP.a in Frameworks */,
 				EF76377318311B92007513C9 /* Foundation.framework in Frameworks */,
 				EF7637C318311C4C007513C9 /* FacebookSDK.framework in Frameworks */,
-				EF9D20AA184A35A60054F732 /* Tapjoy.framework in Frameworks */,
+				EF9D20AF184A37D70054F732 /* Tapjoy.framework in Frameworks */,
 				EF7637C518311C4C007513C9 /* libTestFlight.a in Frameworks */,
 				EF9D20A8184A0F900054F732 /* libChartboost.a in Frameworks */,
 			);
@@ -178,7 +178,7 @@
 		EF76379C18311C4C007513C9 /* ios */ = {
 			isa = PBXGroup;
 			children = (
-				EF9D20A2184A0F870054F732 /* Tapjoy.embeddedframework */,
+				EF9D20AB184A37D70054F732 /* Tapjoy.embeddedframework */,
 				EF76379D18311C4C007513C9 /* FacebookSDK.framework */,
 				EF76379E18311C4C007513C9 /* libLocalyticsAMP.a */,
 				EF76379F18311C4C007513C9 /* libTestFlight.a */,
@@ -281,19 +281,19 @@
 			path = sdk_chartboost;
 			sourceTree = "<group>";
 		};
-		EF9D20A2184A0F870054F732 /* Tapjoy.embeddedframework */ = {
+		EF9D20AB184A37D70054F732 /* Tapjoy.embeddedframework */ = {
 			isa = PBXGroup;
 			children = (
-				EF9D20A3184A0F870054F732 /* Resources */,
+				EF9D20AC184A37D70054F732 /* Resources */,
+				EF9D20AE184A37D70054F732 /* Tapjoy.framework */,
 			);
 			path = Tapjoy.embeddedframework;
 			sourceTree = "<group>";
 		};
-		EF9D20A3184A0F870054F732 /* Resources */ = {
+		EF9D20AC184A37D70054F732 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				EF9D20A9184A35A60054F732 /* Tapjoy.framework */,
-				EF9D20A4184A0F870054F732 /* TapjoyResources.bundle */,
+				EF9D20AD184A37D70054F732 /* TapjoyResources.bundle */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
