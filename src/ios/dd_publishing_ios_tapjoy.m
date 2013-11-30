@@ -8,51 +8,73 @@
 	#error This file cannot be compiled with ARC. Either turn off ARC for the project or use -fno-objc-arc flag
 #endif
 
-/*
-#import "LocalyticsSession.h"
+#import <Tapjoy/Tapjoy.h>
 
-void dd_pbl_ios_localytics_session_start(const char * key)
+int8_t dd_pbl_ios_tapjoy_request_points_state = 0;
+uint32_t dd_pbl_ios_tapjoy_points = 0;
+
+void dd_pbl_ios_tapjoy_start(const char * app_id, const char * secret_key)
 {
-	[[LocalyticsSession shared] startSession:[NSString stringWithUTF8String:key]];
+	[Tapjoy requestTapjoyConnect:[NSString stringWithUTF8String:app_id]
+					   secretKey:[NSString stringWithUTF8String:secret_key]
+						 options:@{ TJC_OPTION_ENABLE_LOGGING : @(YES) }];
 }
 
-void dd_pbl_ios_localytics_session_end()
+void dd_pbl_ios_tapjoy_show_offers(void * viewcontroller)
 {
-	[[LocalyticsSession shared] close];
-	[[LocalyticsSession shared] upload];
+	[Tapjoy showOffersWithViewController:(UIViewController*)viewcontroller];
 }
 
-void dd_pbl_ios_localytics_session_resume()
+void dd_pbl_ios_tapjoy_request_points()
 {
-	[[LocalyticsSession shared] resume];
-	[[LocalyticsSession shared] upload];
-}
-
-void dd_pbl_ios_localytics_track_event(const char * name, uint16_t attributes_count, const char ** parameters, const char ** values, uint32_t customer_value_increase)
-{
-	NSMutableDictionary * dict = nil;
+	if(dd_pbl_ios_tapjoy_request_points_state < 0)
+		return;
 	
-	if(attributes_count)
-	{
-		dict = [[NSMutableDictionary alloc] initWithCapacity:attributes_count];
-		
-		for(size_t i = 0; i < attributes_count; ++i)
-			[dict setObject:[NSString stringWithUTF8String:values[i]] forKey:[NSString stringWithUTF8String:parameters[i]]];
-	}
-
-	[[LocalyticsSession shared] tagEvent:[NSString stringWithUTF8String:name] attributes:dict customerValueIncrease:[NSNumber numberWithInt:customer_value_increase]];
+	dd_pbl_ios_tapjoy_request_points_state = -1;
 	
-	if(dict)
+	[Tapjoy getTapPointsWithCompletion:^
+		(NSDictionary *parameters, NSError *error)
 	{
-		[dict release];
-		dict = nil;
-	}
+		if(error)
+		{
+			dd_pbl_ios_tapjoy_request_points_state = 0;
+		}
+		else
+		{
+			dd_pbl_ios_tapjoy_request_points_state = 1;
+			dd_pbl_ios_tapjoy_points = [parameters[@"amount"] intValue];
+		}
+	}];
 }
 
-void dd_pbl_ios_localytics_track_screen(const char * name)
+int8_t dd_pbl_ios_tapjoy_is_points_aviable()
 {
-	[[LocalyticsSession shared] tagScreen:[NSString stringWithUTF8String:name]];
+	return dd_pbl_ios_tapjoy_request_points_state;
 }
-*/
+
+uint32_t dd_pbl_ios_tapjoy_get_points()
+{
+	return dd_pbl_ios_tapjoy_points;
+}
+
+void dd_pbl_ios_tapjoy_spend_points(uint32_t count)
+{
+	if(dd_pbl_ios_tapjoy_request_points_state <= 0)
+		return;
+	
+	[Tapjoy spendTapPoints:count completion:^
+		(NSDictionary *parameters, NSError *error)
+	{
+		if(error)
+		{
+			dd_pbl_ios_tapjoy_request_points_state = 0;
+		}
+		else
+		{
+			dd_pbl_ios_tapjoy_request_points_state = 1;
+			dd_pbl_ios_tapjoy_points = [parameters[@"amount"] intValue];
+		}
+	}];
+}
 
 #endif

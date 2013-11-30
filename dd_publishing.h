@@ -16,8 +16,8 @@
 #define DD_PBL_IOS_LOCALYTICS
 #define DD_PBL_IOS_TESTFLIGHT
 #define DD_PBL_IOS_ADX
-//#define DD_PBL_IOS_CHARTBOOST
-//#define DD_PBL_IOS_TAPJOY
+#define DD_PBL_IOS_CHARTBOOST
+#define DD_PBL_IOS_TAPJOY
 
 #endif
 
@@ -159,6 +159,20 @@ void dd_pbl_ios_adx_session_start(const char * client_id, const char * apple_id,
 void dd_pbl_ios_adx_track_event(const char * name, const char * data, const char * currency, const char * custom_data); // data, currency and custom_data can be null
 void dd_pbl_ios_adx_handle_url(void * url); // actually its NSURL*, use it in handleOpenURL and openURL
 
+// -------------------------------------- Chartboost
+	
+void dd_pbl_ios_chartboost_start(const char * app_id, const char * app_signature);
+void dd_pbl_ios_chartboost_show_interstitial();
+
+// -------------------------------------- Tapjoy
+	
+void dd_pbl_ios_tapjoy_start(const char * app_id, const char * secret_key);
+void dd_pbl_ios_tapjoy_show_offers(void * viewcontroller);
+void dd_pbl_ios_tapjoy_request_points();
+int8_t dd_pbl_ios_tapjoy_is_points_aviable();
+uint32_t dd_pbl_ios_tapjoy_get_points();
+void dd_pbl_ios_tapjoy_spend_points(uint32_t count);
+	
 // ------------------------------------------------------------------------------------------- Android
 
 // -------------------------------------------------------------------------------------------

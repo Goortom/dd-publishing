@@ -30,6 +30,10 @@
 		EF7637DA18312C79007513C9 /* libdd-publishing.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = EF76376F18311B92007513C9 /* libdd-publishing.a */; };
 		EF7637DC18312C7D007513C9 /* dd_publishing.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = EF76379918311C4C007513C9 /* dd_publishing.h */; };
 		EF7637DD18312C83007513C9 /* FacebookSDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = EF76379D18311C4C007513C9 /* FacebookSDK.framework */; };
+		EF9D209E184A0F6A0054F732 /* dd_publishing_ios_chartboost.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9D209C184A0F6A0054F732 /* dd_publishing_ios_chartboost.m */; };
+		EF9D209F184A0F6A0054F732 /* dd_publishing_ios_tapjoy.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9D209D184A0F6A0054F732 /* dd_publishing_ios_tapjoy.m */; };
+		EF9D20A8184A0F900054F732 /* libChartboost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9D20A7184A0F900054F732 /* libChartboost.a */; };
+		EF9D20AA184A35A60054F732 /* Tapjoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9D20A9184A35A60054F732 /* Tapjoy.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -87,6 +91,12 @@
 		EF7637D518311CD3007513C9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EF7637D718311F5F007513C9 /* AdXTracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdXTracking.h; sourceTree = "<group>"; };
 		EF7637D818311F5F007513C9 /* AdXTracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdXTracking.m; sourceTree = "<group>"; };
+		EF9D209C184A0F6A0054F732 /* dd_publishing_ios_chartboost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dd_publishing_ios_chartboost.m; sourceTree = "<group>"; };
+		EF9D209D184A0F6A0054F732 /* dd_publishing_ios_tapjoy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dd_publishing_ios_tapjoy.m; sourceTree = "<group>"; };
+		EF9D20A1184A0F730054F732 /* Chartboost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chartboost.h; sourceTree = "<group>"; };
+		EF9D20A4184A0F870054F732 /* TapjoyResources.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TapjoyResources.bundle; sourceTree = "<group>"; };
+		EF9D20A7184A0F900054F732 /* libChartboost.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libChartboost.a; sourceTree = "<group>"; };
+		EF9D20A9184A35A60054F732 /* Tapjoy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tapjoy.framework; path = ../Tapjoy.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +108,9 @@
 				EF7637C418311C4C007513C9 /* libLocalyticsAMP.a in Frameworks */,
 				EF76377318311B92007513C9 /* Foundation.framework in Frameworks */,
 				EF7637C318311C4C007513C9 /* FacebookSDK.framework in Frameworks */,
+				EF9D20AA184A35A60054F732 /* Tapjoy.framework in Frameworks */,
 				EF7637C518311C4C007513C9 /* libTestFlight.a in Frameworks */,
+				EF9D20A8184A0F900054F732 /* libChartboost.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,9 +178,11 @@
 		EF76379C18311C4C007513C9 /* ios */ = {
 			isa = PBXGroup;
 			children = (
+				EF9D20A2184A0F870054F732 /* Tapjoy.embeddedframework */,
 				EF76379D18311C4C007513C9 /* FacebookSDK.framework */,
 				EF76379E18311C4C007513C9 /* libLocalyticsAMP.a */,
 				EF76379F18311C4C007513C9 /* libTestFlight.a */,
+				EF9D20A7184A0F900054F732 /* libChartboost.a */,
 			);
 			path = ios;
 			sourceTree = "<group>";
@@ -186,6 +200,8 @@
 		EF7637A318311C4C007513C9 /* ios */ = {
 			isa = PBXGroup;
 			children = (
+				EF9D209C184A0F6A0054F732 /* dd_publishing_ios_chartboost.m */,
+				EF9D209D184A0F6A0054F732 /* dd_publishing_ios_tapjoy.m */,
 				EF7637A418311C4C007513C9 /* dd_publishing_ios_adx.m */,
 				EF7637A518311C4C007513C9 /* dd_publishing_ios_fb.m */,
 				EF7637A618311C4C007513C9 /* dd_publishing_ios_gc.m */,
@@ -198,6 +214,7 @@
 				EF7637AE18311C4C007513C9 /* sdk_localytics */,
 				EF7637B118311C4C007513C9 /* sdk_mkstorekit */,
 				EF7637C118311C4C007513C9 /* sdk_testflight */,
+				EF9D20A0184A0F730054F732 /* sdk_chartboost */,
 			);
 			path = ios;
 			sourceTree = "<group>";
@@ -254,6 +271,31 @@
 				EF7637C218311C4C007513C9 /* TestFlight.h */,
 			);
 			path = sdk_testflight;
+			sourceTree = "<group>";
+		};
+		EF9D20A0184A0F730054F732 /* sdk_chartboost */ = {
+			isa = PBXGroup;
+			children = (
+				EF9D20A1184A0F730054F732 /* Chartboost.h */,
+			);
+			path = sdk_chartboost;
+			sourceTree = "<group>";
+		};
+		EF9D20A2184A0F870054F732 /* Tapjoy.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				EF9D20A3184A0F870054F732 /* Resources */,
+			);
+			path = Tapjoy.embeddedframework;
+			sourceTree = "<group>";
+		};
+		EF9D20A3184A0F870054F732 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EF9D20A9184A35A60054F732 /* Tapjoy.framework */,
+				EF9D20A4184A0F870054F732 /* TapjoyResources.bundle */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,12 +356,14 @@
 				EF7637CD18311C4C007513C9 /* dd_publishing_ios_reachability.m in Sources */,
 				EF7637C718311C4C007513C9 /* dd_publishing_ios_adx.m in Sources */,
 				EF7637C818311C4C007513C9 /* dd_publishing_ios_fb.m in Sources */,
+				EF9D209E184A0F6A0054F732 /* dd_publishing_ios_chartboost.m in Sources */,
 				EF7637D218311C4C007513C9 /* MKSKSubscriptionProduct.m in Sources */,
 				EF7637D018311C4C007513C9 /* SFHFKeychainUtils.m in Sources */,
 				EF69FF7A18350AED0005B0CC /* dd_publishing.c in Sources */,
 				EF7637D118311C4C007513C9 /* MKSKProduct.m in Sources */,
 				EF7637CF18311C4C007513C9 /* NSData+MKBase64.m in Sources */,
 				EF7637D318311C4C007513C9 /* MKStoreManager.m in Sources */,
+				EF9D209F184A0F6A0054F732 /* dd_publishing_ios_tapjoy.m in Sources */,
 				EF7637CA18311C4C007513C9 /* dd_publishing_ios_inapp.m in Sources */,
 				EF7637CB18311C4C007513C9 /* dd_publishing_ios_localytics.m in Sources */,
 			);
@@ -406,6 +450,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/jimon/Documents/dd-publishing/lib/ios",
+					"/Users/jimon/Documents/dd-publishing/lib/ios/Tapjoy.embeddedframework",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "dd-publishing/dd-publishing-Prefix.pch";
@@ -433,6 +478,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/jimon/Documents/dd-publishing/lib/ios",
+					"/Users/jimon/Documents/dd-publishing/lib/ios/Tapjoy.embeddedframework",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "dd-publishing/dd-publishing-Prefix.pch";

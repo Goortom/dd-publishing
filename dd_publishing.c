@@ -133,5 +133,27 @@ void dd_pbl_ios_adx_handle_url(void * url) {}
 
 #endif
 
+// -------------------------------------- Chartboost
+
+#ifndef DD_PBL_IOS_CHARTBOOST
+
+void dd_pbl_ios_chartboost_start(const char * app_id, const char * app_signature) {}
+void dd_pbl_ios_chartboost_show_interstitial() {}
+
+#endif
+
+// -------------------------------------- Tapjoy
+
+#ifndef DD_PBL_IOS_TAPJOY
+
+void dd_pbl_ios_tapjoy_start(const char * app_id, const char * secret_key) {}
+void dd_pbl_ios_tapjoy_show_offers(void * viewcontroller) {}
+void dd_pbl_ios_tapjoy_request_points() {}
+int8_t dd_pbl_ios_tapjoy_is_points_aviable() {return -1;}
+uint32_t dd_pbl_ios_tapjoy_get_points() {return 0;}
+void dd_pbl_ios_tapjoy_spend_points(uint32_t count) {}
+
+#endif
+
 // ------------------------------------------------------------------------------------------- Android
 
