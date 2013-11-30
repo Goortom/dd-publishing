@@ -16,6 +16,8 @@
 #define DD_PBL_IOS_LOCALYTICS
 #define DD_PBL_IOS_TESTFLIGHT
 #define DD_PBL_IOS_ADX
+//#define DD_PBL_IOS_CHARTBOOST
+//#define DD_PBL_IOS_TAPJOY
 
 #endif
 

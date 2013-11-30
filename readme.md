@@ -19,4 +19,5 @@ Goortom Publishing Platform lib.
 ## TODO
 
 * static lib for iOS
-* valid GC for iOS 6
+* Chartboost
+* Tapjoy
