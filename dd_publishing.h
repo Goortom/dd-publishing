@@ -15,9 +15,10 @@
 #define DD_PBL_IOS_REACHABILITY
 #define DD_PBL_IOS_LOCALYTICS
 #define DD_PBL_IOS_TESTFLIGHT
-#define DD_PBL_IOS_ADX
 #define DD_PBL_IOS_CHARTBOOST
 #define DD_PBL_IOS_TAPJOY
+//#define DD_PBL_IOS_ADX
+#define DD_PBL_IOS_APPFLYER
 
 #endif
 
@@ -172,6 +173,11 @@ void dd_pbl_ios_tapjoy_request_points();
 int8_t dd_pbl_ios_tapjoy_is_points_aviable();
 uint32_t dd_pbl_ios_tapjoy_get_points();
 void dd_pbl_ios_tapjoy_spend_points(uint32_t count);
+	
+// -------------------------------------- AppFlyer
+void dd_pbl_ios_appflyer_session_start(const char * client_id, const char * apple_id);
+void dd_pbl_ios_appflyer_track_eventAppLaunch();
+void dd_pbl_ios_appflyer_track_event(const char * name, const char * data, const char * currency);
 	
 // ------------------------------------------------------------------------------------------- Android
 
