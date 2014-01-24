@@ -155,5 +155,15 @@ void dd_pbl_ios_tapjoy_spend_points(uint32_t count) {}
 
 #endif
 
+// -------------------------------------- AppFlyer
+
+#ifndef DD_PBL_IOS_APPFLYER
+
+void dd_pbl_ios_appflyer_session_start(const char * client_id, const char * apple_id){}
+void dd_pbl_ios_appflyer_track_eventAppLaunch(){}
+void dd_pbl_ios_appflyer_track_event(const char * name, const char * data, const char * currency){}
+
+#endif
+
 // ------------------------------------------------------------------------------------------- Android
 
