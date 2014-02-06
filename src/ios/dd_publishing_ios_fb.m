@@ -124,9 +124,12 @@ void dd_pbl_ios_fb_grab_data()
 
 					for(id user in arr)
 					{
-						fb_friends[fb_friends_count].uid = [[form numberFromString:user[@"uid"]] unsignedLongLongValue];
-
+						fb_friends[fb_friends_count].uid = 0;
+		
 						const char * name = [user[@"name"] UTF8String];
+						
+						if(user[@"uid"] != nil)
+							fb_friends[fb_friends_count].uid = [user[@"uid"] unsignedLongLongValue];
 
 						if(name)
 						{
