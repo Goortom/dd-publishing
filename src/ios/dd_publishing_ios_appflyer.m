@@ -17,6 +17,8 @@ void dd_pbl_ios_appflyer_session_start(const char * client_id, const char * appl
 	
 	// Set currency code:
 	[AppsFlyerTracker sharedTracker].currencyCode = @"USD"; // US Dollar
+	
+	[AppsFlyerTracker sharedTracker].disableAppleAdSupportTracking = YES;
 }
 
 void dd_pbl_ios_appflyer_track_eventAppLaunch()
